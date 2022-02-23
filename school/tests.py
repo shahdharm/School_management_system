@@ -2,7 +2,7 @@
 from django import urls
 from  django.urls import reverse,resolve
 from django.test import SimpleTestCase,TestCase
-from school.views import adminclick_view, home_view,teacherclick_view,studentclick_view,admin_signup_view,teacher_signup_view,student_signup_view,afterlogin_view,admin_dashboard_view,admin_teacher_view
+from school.views import adminclick_view, home_view,teacherclick_view,studentclick_view,admin_signup_view,teacher_signup_view,student_signup_view,afterlogin_view,admin_dashboard_view,admin_teacher_view,approve_teacher_view,approve_student_view
  
 # Create your tests here.
 
@@ -38,11 +38,6 @@ class TestUrls(SimpleTestCase):
         url=reverse('studentsignup')
         self.assertEquals(resolve(url).func,student_signup_view)
         
-       
-       
-       
-       
-        
         
     def test_case_afterlogin_view_urls(self):
         url=reverse('afterlogin')
@@ -55,3 +50,13 @@ class TestUrls(SimpleTestCase):
     def test_case_admin_teacher_view_urls(self):
         url=reverse('admin-teacher')
         self.assertEquals(resolve(url).func,admin_teacher_view)
+        
+    def test_case_approve_teacher_view_urls(self):
+        url=reverse('approve-teacher',args=[1])
+        self.assertEquals(resolve(url).func,approve_teacher_view)
+        
+        
+        
+    def test_case_approve_student_view_urls(self):
+        url=reverse('approve-student',args=[1])
+        self.assertEquals(resolve(url).func,approve_student_view)
